@@ -1,44 +1,44 @@
 {
   "Domingo": {
-    "horaLigada": "10",
-    "minutoLigada": "11",
-    "horaDesligada": "12",
-    "minutoDesligada": "13"
-  },
-  "Segunda": {
     "horaLigada": "14",
     "minutoLigada": "15",
     "horaDesligada": "16",
     "minutoDesligada": "17"
   },
-  "Terça": {
-    "horaLigada": "15",
-    "minutoLigada": "16",
-    "horaDesligada": "17",
-    "minutoDesligada": "18"
+  "Segunda": {
+    "horaLigada": "13",
+    "minutoLigada": "12",
+    "horaDesligada": "11",
+    "minutoDesligada": "10"
   },
   "Quarta": {
-    "horaLigada": "16",
-    "minutoLigada": "17",
-    "horaDesligada": "18",
-    "minutoDesligada": "19"
+    "horaLigada": "20",
+    "minutoLigada": "21",
+    "horaDesligada": "22",
+    "minutoDesligada": "23"
   },
   "Quinta": {
-    "horaLigada": "17",
-    "minutoLigada": "18",
-    "horaDesligada": "19",
-    "minutoDesligada": "20"
-  },
-  "Sexta": {
-    "horaLigada": "18",
-    "minutoLigada": "19",
-    "horaDesligada": "20",
-    "minutoDesligada": "21"
+    "horaLigada": "21",
+    "minutoLigada": "22",
+    "horaDesligada": "23",
+    "minutoDesligada": "24"
   },
   "Sábado": {
+    "horaLigada": "13",
+    "minutoLigada": "12",
+    "horaDesligada": "11",
+    "minutoDesligada": "10"
+  },
+  "Terça": {
     "horaLigada": "19",
     "minutoLigada": "20",
     "horaDesligada": "21",
     "minutoDesligada": "22"
+  },
+  "Sexta": {
+    "horaLigada": "23",
+    "minutoLigada": "23",
+    "horaDesligada": "09",
+    "minutoDesligada": "24"
   }
 }
