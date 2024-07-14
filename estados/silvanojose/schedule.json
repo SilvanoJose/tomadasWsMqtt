@@ -1,15 +1,71 @@
 {
   "Domingo": {
-    "horaLigada": "14",
-    "minutoLigada": "15",
-    "horaDesligada": "16",
-    "minutoDesligada": "17"
-  },
-  "Segunda": {
     "horaLigada": "13",
     "minutoLigada": "12",
     "horaDesligada": "11",
-    "minutoDesligada": "10"
+    "minutoDesligada": "11",
+    "tomada4": {
+      "agendamento3": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "54"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "54"
+      },
+      "agendamento2": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "54"
+      }
+    }
   },
   "Quarta": {
     "horaLigada": "20",
@@ -18,10 +74,10 @@
     "minutoDesligada": "23"
   },
   "Quinta": {
-    "horaLigada": "21",
-    "minutoLigada": "22",
-    "horaDesligada": "23",
-    "minutoDesligada": "24"
+    "horaLigada": "19",
+    "minutoLigada": "56",
+    "horaDesligada": "19",
+    "minutoDesligada": "57"
   },
   "Sábado": {
     "horaLigada": "13",
@@ -40,5 +96,15 @@
     "minutoLigada": "23",
     "horaDesligada": "09",
     "minutoDesligada": "24"
+  },
+  "Segunda": {
+    "tomada1": {
+      "agendamento3": {
+        "horaLigada": "18",
+        "minutoLigada": "12",
+        "horaDesligada": "18",
+        "minutoDesligada": "13"
+      }
+    }
   }
 }

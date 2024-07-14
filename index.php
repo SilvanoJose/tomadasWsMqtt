@@ -19,7 +19,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container border">
+        <br>
         <h2 class="bg-info text-center p-3 mb-4">Sistema de Controle de Tomadas V-4.0</h2>
         <h4>Acionadores de Tomadas</h4>
         <div class="row">
@@ -77,54 +78,92 @@
                         <span id="temperaturaTomada4">-- °C</span>
                     </td>
                 </tr>
-            </table>           
+            </table>  
+            
             <div class="row">
-                <h4>Cadastro e visualização dos horários de acionamentos automatico</h4>
-                <!-- Coluna para o formulário de cadastro -->
-                <div class="col-md-6">
-                <form id="scheduleForm">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label para="dayOfWeek">Dia da semana:</label>
-                            <select class="form-control" id="dayOfWeek">
-                                <option value="0">Domingo</option>
-                                <option value="1">Segunda-feira</option>
-                                <option value="2">Terça-feira</option>
-                                <option value="3">Quarta-feira</option>
-                                <option value="4">Quinta-feira</option>
-                                <option value="5">Sexta-feira</option>
-                                <option value="6">Sábado</option>
-                            </select>
+            <h4>Cadastro dos horários de acionamentos automático</h4>
+                <!-- Linha 1 -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <form id="scheduleForm">    
+                            <div class="form-group">
+                                <label for="dayOfWeek">Dia da semana:</label>
+                                <select class="form-control" id="dayOfWeek">
+                                    <option value="0">Domingo</option>
+                                    <option value="1">Segunda-feira</option>
+                                    <option value="2">Terça-feira</option>
+                                    <option value="3">Quarta-feira</option>
+                                    <option value="4">Quinta-feira</option>
+                                    <option value="5">Sexta-feira</option>
+                                    <option value="6">Sábado</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label para="hourOn">Hora de ligar:</label>
-                            <input class="form-control" type="number" id="hourOn" min="0" max="23" required>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="numTomada">Nun. Tomada:</label>
+                                <select class="form-control" id="numTomada">
+                                    <option value="1">Tomada 1</option>
+                                    <option value="2">Tomada 2</option>
+                                    <option value="3">Tomada 3</option>
+                                    <option value="4">Tomada 4</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label para="minuteOn">Minuto de ligar:</label>
-                            <input class="form-control" type="number" id="minuteOn" min="0" max="59" required>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="numSchedule">Nun. Agendam:</label>
+                                <select class="form-control" id="numSchedule">
+                                    <option value="1">Agendamento 1</option>
+                                    <option value="2">Agendamento 2</option>
+                                    <option value="3">Agendamento 3</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label para="hourOff">Hora de desligar:</label>
-                            <input class="form-control" type="number" id="hourOff" min="0" max="23" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label para="minuteOff">Minuto de desligar:</label>
-                            <input class="form-control" type="number" id="minuteOff" min="0" max="59" required>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="hourOn">Hora de ligar:</label>
+                                <input class="form-control" type="number" id="hourOn" min="0" max="23" required>
+                            </div>
                         </div>
                     </div>
-                    <button id="cadastrarHorarioBtn" class="btn btn-primary" type="button">Cadastrar Horário</button>
-                </form>
-            </div>
-
+                    <!-- Linha 2 -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="minuteOn">Minuto de ligar:</label>
+                                <input class="form-control" type="number" id="minuteOn" min="0" max="59" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="hourOff">Hora de desligar:</label>
+                                <input class="form-control" type="number" id="hourOff" min="0" max="23" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="minuteOff">Minuto de desligar:</label>
+                                <input class="form-control" type="number" id="minuteOff" min="0" max="59" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button id="cadastrarHorarioBtn" class="btn btn-primary mt-4" type="button">Cadastrar Horário</button>
+                        </div>
+                    </form>    
+                    </div>
+            <div class="row">
+                <h4>Visualização dos horários de acionamentos automatico</h4>
                 <!-- Coluna para a tabela de visualização -->
                 <div class="col-md-6">
                     <table id="scheduleTable" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>Dia da Semana</th>
-                            <th>Hora de Ligação</th>
-                            <th>Hora de Desligamento</th>
+                            <th>Tomada</th>
+                            <th>Agendamento</th>
+                            <th>Hora de Ligar</th>
+                            <th>Hora de Desligar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -140,23 +179,25 @@
     <script>
         $(document).ready(function() {
             // Estabelece a conexão WebSocket com o servidor
-            var ws = new WebSocket("ws://192.168.0.113:8080");
+            var ws = new WebSocket("ws://localhost:8080");
 
             // Define o comportamento do botão 'Cadastrar Horário' quando clicado
             $('#cadastrarHorarioBtn').click(function() {
                 // Obtém os valores dos campos do formulário
                 var diaSemana = $('#dayOfWeek').val();
-                var horaLigar = $('#hourOn').val();
+                var numeroTomada = $('#numTomada').val();
+                var numeroAgendamento = $('#numSchedule').val();
+                var horaLigar = $('#hourOn').val();               
                 var minutoLigar = $('#minuteOn').val();
                 var horaDesligar = $('#hourOff').val();
                 var minutoDesligar = $('#minuteOff').val();
 
                 // Constrói a mensagem a ser enviada ao servidor
-                var mensagem = `${diaSemana},${horaLigar.padStart(2, '0')},${minutoLigar.padStart(2, '0')},${horaDesligar.padStart(2, '0')},${minutoDesligar.padStart(2, '0')}`;
+                var mensagem = `${diaSemana},${numeroTomada},${numeroAgendamento},${horaLigar.padStart(2, '0')},${minutoLigar.padStart(2, '0')},${horaDesligar.padStart(2, '0')},${minutoDesligar.padStart(2, '0')}`;
                 
                 // Verifica se a conexão WebSocket está aberta e envia a mensagem
                 if (ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify({topic: "silvanojose/schedule", message: mensagem}));
+                    ws.send(JSON.stringify({topic: "silvanojose.tcc/schedule", message: mensagem}));
                 }
 
                 // Limpa os campos do formulário após o clique em salvar
@@ -184,73 +225,93 @@
 
             // Função executada quando uma mensagem é recebida do servidor
             ws.onmessage = function(event) {
-                var message = JSON.parse(event.data);
-                const data = JSON.parse(event.data);
+                try {
+                    const message = JSON.parse(event.data);
 
-                if (message.topic || message.topico) {
-                    // Verifica se é um tópico de temperatura e atualiza
-                    if (isTemperaturaTopic(message.topic || message.topico)) {
-                        atualizarTemperatura(message);
-                    } else {
-                        atualizarEstadoDaTomada(message);
+                    if (message.topic || message.topico) {
+                        // Verifica se é um tópico de temperatura e atualiza
+                        if (isTemperaturaTopic(message.topic || message.topico)) {
+                            atualizarTemperatura(message);
+                        } else {
+                            atualizarEstadoDaTomada(message);
+                        }
+                    } else if (message.tipo === 'schedule') {
+                        console.log("Pagina recebeu mensagem do tipo schedule e vai chamar atualizarTabela:", message);
+                        // Verifica se message.message está definido e é um objeto JSON
+                        if (typeof message.message === 'object' && message.message !== null) {
+                            atualizarTabelaSchedule(message.message);
+                        } else {
+                            console.error("Dados recebidos não são uma string JSON válida:", message.message);
+                        }
                     }
-                } else if (data.tipo === 'schedule') {
-                    console.log("Dados do cronograma recebidos:", data);
-                    // Atualiza a tabela com os dados mais recentes
-                    atualizarTabelaSchedule(data.data);
+                } catch (error) {
+                    console.error("Erro ao processar mensagem WebSocket:", error);
                 }
             };
 
-            function atualizarTabelaSchedule(data) {
+            function atualizarTabelaSchedule(schedule) {
                 // Limpa a tabela antes de adicionar novas linhas
                 const tabela = document.getElementById('scheduleTable');
                 const tbody = tabela.querySelector('tbody');
                 tbody.innerHTML = ''; // Limpa as linhas anteriores
 
-                // Adiciona as linhas da tabela com as informações recebidas
-                const schedule = JSON.parse(data);
+                if (typeof schedule !== 'object' || schedule === null) {
+                    console.error("Formato de dados inválido:", schedule);
+                    return;
+                }
 
                 // Mapeamento para ordenar os dias da semana
-                const dayOrder = {
-                    'Domingo': 0,
-                    'Segunda': 1,
-                    'Terça': 2,
-                    'Quarta': 3,
-                    'Quinta': 4,
-                    'Sexta': 5,
-                    'Sábado': 6
-                };
+                const diasDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
-                // Transformar o cronograma em uma array e ordenar pelos dias da semana
-                const sortedSchedule = Object.entries(schedule).sort(
-                    (a, b) => dayOrder[a[0]] - dayOrder[b[0]]
-                );
+                // Transformar o cronograma em um array
+                const scheduleArray = Object.entries(schedule).flatMap(([dia, infoDia]) => {
+                    if (typeof infoDia === 'object' && !Array.isArray(infoDia)) {
+                        return Object.entries(infoDia).flatMap(([tomada, agendamentos]) => {
+                            if (typeof agendamentos === 'object' && !Array.isArray(agendamentos)) {
+                                return Object.entries(agendamentos).map(([agendamento, horarios]) => {
+                                    return {
+                                        diaSemana: diasDaSemana.indexOf(dia),
+                                        tomada: parseInt(tomada.replace('tomada', ''), 10),
+                                        agendamento: parseInt(agendamento.replace('agendamento', ''), 10),
+                                        horaLigada: horarios.horaLigada,
+                                        minutoLigada: horarios.minutoLigada,
+                                        horaDesligada: horarios.horaDesligada,
+                                        minutoDesligada: horarios.minutoDesligada
+                                    };
+                                });
+                            }
+                            return [];
+                        });
+                    }
+                    return [];
+                });
+
+                // Ordenar os horários pelos dias da semana e pelas tomadas
+                scheduleArray.sort((a, b) => {
+                    if (a.diaSemana !== b.diaSemana) {
+                        return a.diaSemana - b.diaSemana;
+                    } else if (a.tomada !== b.tomada) {
+                        return a.tomada - b.tomada;
+                    } else {
+                        return a.agendamento - b.agendamento;
+                    }
+                });
 
                 // Adiciona as linhas da tabela com as informações ordenadas
-                sortedSchedule.forEach(([dia, horario]) => {
+                scheduleArray.forEach(horario => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${dia}</td>
-                        <td>${horario.horaLigada}:${horario.minutoLigada}</td>
-                        <td>${horario.horaDesligada}:${horario.minutoDesligada}</td>
+                        <td>${diasDaSemana[horario.diaSemana]}</td>
+                        <td>${horario.tomada}</td>
+                        <td>${horario.agendamento}</td>
+                        <td>${String(horario.horaLigada).padStart(2, '0')}:${String(horario.minutoLigada).padStart(2, '0')}</td>
+                        <td>${String(horario.horaDesligada).padStart(2, '0')}:${String(horario.minutoDesligada).padStart(2, '0')}</td>
                     `;
-
-                    // Mapeia o nome do dia da semana para um número
-                    const dayNameToNumber = {
-                        "Domingo": 0,
-                        "Segunda": 1,
-                        "Terça": 2,
-                        "Quarta": 3,
-                        "Quinta": 4,
-                        "Sexta": 5,
-                        "Sábado": 6
-                    };
 
                     // Adiciona um evento de clique à linha da tabela para preencher o formulário
                     row.addEventListener('click', () => {
                         const dayOptions = document.getElementById('dayOfWeek').options;
-                        const dayOfWeekClicked = dia;
-                        const numericDayOfWeek = dayNameToNumber[dayOfWeekClicked];
+                        const numericDayOfWeek = horario.diaSemana;
                         const selectedIndex = Array.from(dayOptions).findIndex(option => parseInt(option.value) === numericDayOfWeek);
                         if (selectedIndex !== -1) {
                             document.getElementById('dayOfWeek').selectedIndex = selectedIndex;
@@ -259,14 +320,17 @@
                         document.getElementById('minuteOn').value = horario.minutoLigada;
                         document.getElementById('hourOff').value = horario.horaDesligada;
                         document.getElementById('minuteOff').value = horario.minutoDesligada;
+                        document.getElementById('numTomada').value = horario.tomada;
+                        document.getElementById('numSchedule').value = horario.agendamento;
                     });
                     tbody.appendChild(row);
                 });
             }
 
+
             // Função para verificar se um tópico é de temperatura
             function isTemperaturaTopic(topic) {
-                return topic.startsWith('silvanojose/temperatura');
+                return topic.startsWith('silvanojose.tcc/temperatura');
             }
 
             // Função para atualizar os valores de temperatura
@@ -284,7 +348,7 @@
                 var estadoTomada = $("#statusTomada" + numeroTomada).text();
                 var estado = estadoTomada === "Ligado" ? "0" : "1";
                 if (ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify({topic: "silvanojose/tomada" + numeroTomada, message: estado}));
+                    ws.send(JSON.stringify({topic: "silvanojose.tcc/tomada" + numeroTomada, message: estado}));
                 }
             });
 
@@ -301,7 +365,7 @@
             // Função para carregar os estados iniciais de todas as tomadas ao se conectar
             function carregarEstadosIniciais() {
                 for (var i = 1; i <= 4; i++) {
-                    var topico = "silvanojose/tomada" + i;
+                    var topico = "silvanojose.tcc/tomada" + i;
                     console.log("Enviando solicitação para obter estado inicial...");
                     console.log({tipo: "getEstado", topico: topico});
                     ws.send(JSON.stringify({tipo: "getEstado", topico: topico}));
@@ -312,11 +376,11 @@
             function carregarTemperIniciais() {
                 console.log("Entrou carregarTemperIniciais");
                 const topicosTemperatura = [
-                    'silvanojose/temperaturaBoxTomadas',
-                    'silvanojose/temperaturaTomada1',
-                    'silvanojose/temperaturaTomada2',
-                    'silvanojose/temperaturaTomada3',
-                    'silvanojose/temperaturaTomada4'
+                    'silvanojose.tcc/temperaturaBoxTomadas',
+                    'silvanojose.tcc/temperaturaTomada1',
+                    'silvanojose.tcc/temperaturaTomada2',
+                    'silvanojose.tcc/temperaturaTomada3',
+                    'silvanojose.tcc/temperaturaTomada4'
                 ];
 
                 topicosTemperatura.forEach((topico) => {

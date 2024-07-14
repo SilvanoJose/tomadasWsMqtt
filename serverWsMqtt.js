@@ -8,16 +8,16 @@ console.log("Servidor WebSocket rodando na porta 8080");
 const client = mqtt.connect('mqtt://broker.emqx.io');
 
 const topicos = [
-  'silvanojose/temperaturaBoxTomadas',
-  'silvanojose/temperaturaTomada1',
-  'silvanojose/temperaturaTomada2',
-  'silvanojose/temperaturaTomada3',
-  'silvanojose/temperaturaTomada4',
-  'silvanojose/tomada1',
-  'silvanojose/tomada2',
-  'silvanojose/tomada3',
-  'silvanojose/tomada4',
-  'silvanojose/schedule'
+  'silvanojose.tcc/temperaturaBoxTomadas',
+  'silvanojose.tcc/temperaturaTomada1',
+  'silvanojose.tcc/temperaturaTomada2',
+  'silvanojose.tcc/temperaturaTomada3',
+  'silvanojose.tcc/temperaturaTomada4',
+  'silvanojose.tcc/tomada1',
+  'silvanojose.tcc/tomada2',
+  'silvanojose.tcc/tomada3',
+  'silvanojose.tcc/tomada4',
+  'silvanojose.tcc/schedule'
 ];
 
 // Ao conectar-se ao broker MQTT, inscreve-se nos tópicos especificados
@@ -50,12 +50,17 @@ function salvarEstadoTomada(topico, estado) {
   console.log(`Tentando salvar estado para o tópico: ${topico}`);
   console.log(`Estado recebido: ${estado}`);
 
-  if (topico === 'silvanojose/schedule') {
+  if (topico === 'silvanojose.tcc/schedule') {
     const estadoArray = estado.split(',');
 
     const diaSemanaIndex = parseInt(estadoArray[0], 10);
-    if (isNaN(diaSemanaIndex) || diaSemanaIndex < 0 || diaSemanaIndex > 6) {
-      console.error("Índice do dia da semana inválido:", diaSemanaIndex);
+    const tomadaNumero = parseInt(estadoArray[1], 10);
+    const agendamentoNumero = parseInt(estadoArray[2], 10);
+
+    if (isNaN(diaSemanaIndex) || diaSemanaIndex < 0 || diaSemanaIndex > 6 ||
+        isNaN(tomadaNumero) || tomadaNumero < 1 || tomadaNumero > 4 ||
+        isNaN(agendamentoNumero) || agendamentoNumero < 1 || agendamentoNumero > 3) {
+      console.error("Índice inválido:", diaSemanaIndex, tomadaNumero, agendamentoNumero);
       return;
     }
 
@@ -74,11 +79,13 @@ function salvarEstadoTomada(topico, estado) {
       schedule = {}; // Se o arquivo não existe, cria um objeto vazio
     }
 
-    schedule[diasSemana[diaSemanaIndex]] = {
-      horaLigada: estadoArray[1],
-      minutoLigada: estadoArray[2],
-      horaDesligada: estadoArray[3],
-      minutoDesligada: estadoArray[4],
+    schedule[diasSemana[diaSemanaIndex]] = schedule[diasSemana[diaSemanaIndex]] || {};
+    schedule[diasSemana[diaSemanaIndex]][`tomada${tomadaNumero}`] = schedule[diasSemana[diaSemanaIndex]][`tomada${tomadaNumero}`] || {};
+    schedule[diasSemana[diaSemanaIndex]][`tomada${tomadaNumero}`][`agendamento${agendamentoNumero}`] = {
+      horaLigada: estadoArray[3],
+      minutoLigada: estadoArray[4],
+      horaDesligada: estadoArray[5],
+      minutoDesligada: estadoArray[6],
     };
 
     // Salva o agendamento no arquivo
@@ -92,7 +99,9 @@ function salvarEstadoTomada(topico, estado) {
         const scheduleData = JSON.stringify(schedule);
         wsClients.forEach(client => {
           if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify({ tipo: 'schedule', data: scheduleData }));
+            //client.send(JSON.stringify({ tipo: 'schedule', data: scheduleData }));
+            client.send(JSON.stringify({ tipo: 'schedule', message: schedule })); // <-- Mude para enviar o objeto diretamente
+
           }
         });
       }
@@ -146,90 +155,109 @@ wss.on('connection', ws => {
   console.log("Cliente WebSocket conectado");
   wsClients.add(ws);
 
-  carregarEstadoTomada('silvanojose/schedule', (err, scheduleData) => {
+  // Carrega os dados de agendamento ao conectar
+  carregarEstadoTomada('silvanojose.tcc/schedule', (err, scheduleData) => {
     if (err) {
       console.error("Erro ao carregar o estado do schedule:", err);
     } else {
-      if (ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({ tipo: 'schedule', data: scheduleData }));
+      try {
+        const schedule = JSON.parse(scheduleData);
+        if (ws.readyState === WebSocket.OPEN) {
+          //ws.send(JSON.stringify({ tipo: 'schedule', message: schedule }));
+          ws.send(JSON.stringify({ tipo: 'schedule', message: schedule })); // <-- Mude para enviar o objeto diretamente
+        }
+      } catch (err) {
+        console.error("Erro ao parsear JSON do schedule:", err);
       }
     }
-  })
+  });
 
   // Evento de mensagem WebSocket
   ws.on('message', function incoming(message) {
-    const msgData = JSON.parse(message);
+    try {
+      const msgData = JSON.parse(message);
+      console.log('Mensagem recebida:', msgData);
 
-    // Verifica o tipo de mensagem recebida  
-    if (msgData.tipo && msgData.tipo === 'getEstado') {
-      console.log("Entrou na opção getEstado");
+      // Verifica o tipo de mensagem recebida  
+      if (msgData.tipo && msgData.tipo === 'getEstado') {
+        console.log("Entrou na opção getEstado");
 
-      console.log(`Solicitação de estado para o tópico ${msgData.topico}`);
-      // Consulta o estado atual da tomada no arquivo e envia de volta ao cliente
-      carregarEstadoTomada(msgData.topico, (err, estado) => {
-        if (err) {
-          console.error("Erro ao carregar estado da tomada", err);
-        } else {
-          // Se o estado contém o tópico, extraímos apenas o estado
-          const estadoTomada = estado.includes(":") ? estado.split(":")[1] : estado;
-
-          if (ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify({ topico: msgData.topico, message: estadoTomada }));
-          }
-          console.log(`Estado atual da tomada ${msgData.topico}:`, estado);
-        }
-      });
-
-    } else if (msgData.tipo && msgData.tipo === 'getTemperatura') {
-      console.log("Entrou na opção getTemperatura");
-      carregarEstadoTemperatura(msgData.topico, (err, estado) => {
-        if (err) {
-          console.error("Erro ao carregar estado da temperatura", err);
-        } else {
-          const partes = estado.split(":");
-          const temperatura = partes.length > 1 ? partes[1] : null;
-
-          const temperaturaNumerica = parseFloat(temperatura);
-          console.log("TemperaturaNumerica convertida: ", temperaturaNumerica);
-          if (!isNaN(temperaturaNumerica) && temperaturaNumerica >= -99.99 && temperaturaNumerica <= 99.99) {
-            if (ws.readyState === WebSocket.OPEN) {
-              ws.send(JSON.stringify({
-                topico: msgData.topico,
-                message: temperaturaNumerica.toString()
-              }));
-            }
+        console.log(`Solicitação de estado para o tópico ${msgData.topico}`);
+        // Consulta o estado atual da tomada no arquivo e envia de volta ao cliente
+        carregarEstadoTomada(msgData.topico, (err, estado) => {
+          if (err) {
+            console.error("Erro ao carregar estado da tomada", err);
           } else {
-            console.error("Formato de temperatura inválido ou fora do intervalo esperado:", temperatura);
+            // Se o estado contém o tópico, extraímos apenas o estado
+            const estadoTomada = estado.includes(":") ? estado.split(":")[1] : estado;
+
+            if (ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({ topico: msgData.topico, message: estadoTomada }));
+            }
+            console.log(`Estado atual da tomada ${msgData.topico}:`, estado);
           }
-        }
-      });
+        });
 
-    } else if (msgData.tipo && msgData.tipo === 'cadastrarHorario') {
-      console.log("Entrou na opção cadastrarHorário");
-      const { diaSemana, horaLigar, minutoLigar, horaDesligar, minutoDesligar } = msgData;
-      const mensagem = `${diaSemana},${horaLigar.padStart(2, '0')},${minutoLigar.padStart(2, '0')},${horaDesligar.padStart(2, '0')},${minutoDesligar.padStart(2, '0')}`;
+      } else if (msgData.tipo && msgData.tipo === 'getTemperatura') {
+        console.log("Entrou na opção getTemperatura");
+        carregarEstadoTemperatura(msgData.topico, (err, estado) => {
+          if (err) {
+            console.error("Erro ao carregar estado da temperatura", err);
+          } else {
+            const partes = estado.split(":");
+            const temperatura = partes.length > 1 ? partes[1] : null;
 
-      client.publish('silvanojose/schedule', mensagem);
-      console.log(`Horário de acionamento automático cadastrado: ${mensagem}`);
-
-    } else if (msgData.tipo === 'getSchedule') {
-      carregarEstadoTomada('silvanojose/schedule', (err, scheduleData) => {
-        if (err) {
-          console.error("Erro ao carregar o estado do schedule:", err);
-        } else {
-          if (ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify({ tipo: 'schedule', data: scheduleData }));
+            const temperaturaNumerica = parseFloat(temperatura);
+            console.log("TemperaturaNumerica convertida: ", temperaturaNumerica);
+            if (!isNaN(temperaturaNumerica) && temperaturaNumerica >= -99.99 && temperaturaNumerica <= 99.99) {
+              if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                  topico: msgData.topico,
+                  message: temperaturaNumerica.toString()
+                }));
+              }
+            } else {
+              console.error("Formato de temperatura inválido ou fora do intervalo esperado:", temperatura);
+            }
           }
-        }
-      });
-    } else {
-      // Se a mensagem não for reconhecida como uma solicitação específica, publica-a no MQTT
-      if (msgData.topic && msgData.message !== undefined) {
-        client.publish(msgData.topic, msgData.message);
+        });
+
+      } else if (msgData.tipo && msgData.tipo === 'cadastrarHorario') {
+        console.log("Entrou na opção cadastrarHorário");
+        const { diaSemana, tomada, agendamento, horaLigar, minutoLigar, horaDesligar, minutoDesligar } = msgData;
+          const mensagem = `${diaSemana},${tomada},${agendamento},${horaLigar.padStart(2, '0')},${minutoLigar.padStart(2, '0')},${horaDesligar.padStart(2, '0')},${minutoDesligar.padStart(2, '0')}`;
+          
+          client.publish('silvanojose.tcc/schedule', mensagem);
+          console.log(`Horário de acionamento automático cadastrado: ${mensagem}`);
+
+      } else if (msgData.tipo === 'getSchedule') {
+        // Enviar os dados atuais de agendamento ao cliente
+        carregarEstadoTomada('silvanojose.tcc/schedule', (err, scheduleData) => {
+          if (err) {
+            console.error("Erro ao carregar o estado do schedule:", err);
+          } else {
+            try {
+              const schedule = JSON.parse(scheduleData);
+              if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ tipo: 'schedule', message: schedule })); // <-- Mude para enviar o objeto diretamente
+              }
+            } catch (err) {
+              console.error("Erro ao parsear JSON do schedule:", err);
+            }
+          }
+        });
+
       } else {
-        console.error("Mensagem recebida está malformada:", message);
+        // Se a mensagem não for reconhecida como uma solicitação específica, publica-a no MQTT
+        if (msgData.topic && msgData.message !== undefined) {
+          client.publish(msgData.topic, msgData.message);
+        } else {
+          console.error("Mensagem recebida está malformada:", message);
+        }
       }
-    }
+    } catch (e) {
+        console.error('Mensagem recebida está malformada:', message);
+    }    
   });
 
   // Evento de fechamento de conexão WebSocket

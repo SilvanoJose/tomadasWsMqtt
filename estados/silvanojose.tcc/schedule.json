@@ -1,0 +1,536 @@
+{
+  "Domingo": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "13",
+        "horaDesligada": "14",
+        "minutoDesligada": "55"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "13",
+        "horaDesligada": "14",
+        "minutoDesligada": "55"
+      },
+      "agendamento3": {
+        "horaLigada": "11",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "14"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "10",
+        "minutoLigada": "11",
+        "horaDesligada": "13",
+        "minutoDesligada": "15"
+      },
+      "agendamento3": {
+        "horaLigada": "23",
+        "minutoLigada": "21",
+        "horaDesligada": "22",
+        "minutoDesligada": "00"
+      }
+    }
+  },
+  "Segunda": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "13",
+        "minutoLigada": "14",
+        "horaDesligada": "15",
+        "minutoDesligada": "16"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "14",
+        "minutoDesligada": "15"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    }
+  },
+  "Terça": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "14",
+        "minutoLigada": "45",
+        "horaDesligada": "15",
+        "minutoDesligada": "46"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    }
+  },
+  "Quarta": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "14",
+        "minutoLigada": "45",
+        "horaDesligada": "15",
+        "minutoDesligada": "46"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    }
+  },
+  "Quinta": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "14",
+        "minutoLigada": "45",
+        "horaDesligada": "15",
+        "minutoDesligada": "46"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    }
+  },
+  "Sexta": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "14",
+        "minutoLigada": "45",
+        "horaDesligada": "15",
+        "minutoDesligada": "46"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    }
+  },
+  "Sábado": {
+    "tomada1": {
+      "agendamento1": {
+        "horaLigada": "14",
+        "minutoLigada": "45",
+        "horaDesligada": "15",
+        "minutoDesligada": "48"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada2": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada3": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento3": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "12",
+        "minutoLigada": "12",
+        "horaDesligada": "13",
+        "minutoDesligada": "13"
+      },
+      "agendamento2": {
+        "horaLigada": "08",
+        "minutoLigada": "08",
+        "horaDesligada": "09",
+        "minutoDesligada": "09"
+      },
+      "agendamento3": {
+        "horaLigada": "15",
+        "minutoLigada": "16",
+        "horaDesligada": "17",
+        "minutoDesligada": "18"
+      }
+    }
+  }
+}
