@@ -2,10 +2,10 @@
   "Domingo": {
     "tomada1": {
       "agendamento1": {
-        "horaLigada": "12",
-        "minutoLigada": "13",
-        "horaDesligada": "14",
-        "minutoDesligada": "55"
+        "horaLigada": "20",
+        "minutoLigada": "27",
+        "horaDesligada": "20",
+        "minutoDesligada": "28"
       },
       "agendamento2": {
         "horaLigada": "12",
@@ -22,10 +22,10 @@
     },
     "tomada2": {
       "agendamento1": {
-        "horaLigada": "12",
-        "minutoLigada": "12",
-        "horaDesligada": "13",
-        "minutoDesligada": "13"
+        "horaLigada": "20",
+        "minutoLigada": "29",
+        "horaDesligada": "20",
+        "minutoDesligada": "30"
       },
       "agendamento2": {
         "horaLigada": "10",
@@ -39,15 +39,37 @@
         "horaDesligada": "22",
         "minutoDesligada": "00"
       }
+    },
+    "tomada3": {
+      "agendamento2": {
+        "horaLigada": "8",
+        "minutoLigada": "8",
+        "horaDesligada": "9",
+        "minutoDesligada": "9"
+      },
+      "agendamento1": {
+        "horaLigada": "20",
+        "minutoLigada": "31",
+        "horaDesligada": "20",
+        "minutoDesligada": "32"
+      }
+    },
+    "tomada4": {
+      "agendamento1": {
+        "horaLigada": "20",
+        "minutoLigada": "33",
+        "horaDesligada": "20",
+        "minutoDesligada": "34"
+      }
     }
   },
   "Segunda": {
     "tomada1": {
       "agendamento1": {
-        "horaLigada": "13",
-        "minutoLigada": "14",
-        "horaDesligada": "15",
-        "minutoDesligada": "16"
+        "horaLigada": "11",
+        "minutoLigada": "12",
+        "horaDesligada": "11",
+        "minutoDesligada": "13"
       },
       "agendamento2": {
         "horaLigada": "12",
@@ -64,10 +86,10 @@
     },
     "tomada2": {
       "agendamento1": {
-        "horaLigada": "12",
-        "minutoLigada": "12",
+        "horaLigada": "13",
+        "minutoLigada": "17",
         "horaDesligada": "13",
-        "minutoDesligada": "13"
+        "minutoDesligada": "18"
       },
       "agendamento2": {
         "horaLigada": "12",
@@ -208,10 +230,10 @@
   "Quarta": {
     "tomada1": {
       "agendamento1": {
-        "horaLigada": "14",
-        "minutoLigada": "45",
-        "horaDesligada": "15",
-        "minutoDesligada": "46"
+        "horaLigada": "21",
+        "minutoLigada": "50",
+        "horaDesligada": "21",
+        "minutoDesligada": "51"
       },
       "agendamento2": {
         "horaLigada": "12",
@@ -454,10 +476,10 @@
   "Sábado": {
     "tomada1": {
       "agendamento1": {
-        "horaLigada": "14",
-        "minutoLigada": "45",
-        "horaDesligada": "15",
-        "minutoDesligada": "48"
+        "horaLigada": "18",
+        "minutoLigada": "27",
+        "horaDesligada": "18",
+        "minutoDesligada": "28"
       },
       "agendamento2": {
         "horaLigada": "12",
