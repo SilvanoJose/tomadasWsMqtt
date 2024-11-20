@@ -173,6 +173,21 @@
                 </div>
             </div>
 
+            <div class="row">
+                <h4 class="mt-5">Mensagens Recebidas</h4>
+                <table id="serialPrintsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data de Recebimento</th>
+                            <th>Mensagem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- As mensagens serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </div>
+
     </div> <!-- Fecha o container -->  
     
    
@@ -180,6 +195,24 @@
         $(document).ready(function() {
             // Estabelece a conexão WebSocket com o servidor
             var ws = new WebSocket("ws://localhost:8080");
+            
+            // Função para atualizar a tabela de mensagens recebidas
+            function atualizarTabelaSerialPrints(message) {
+                // Obtém a referência da tabela
+                const tabela = document.getElementById('serialPrintsTable').getElementsByTagName('tbody')[0];
+
+                // Cria uma nova linha na tabela
+                const novaLinha = tabela.insertRow(0); // Insere no início da tabela
+
+                // Adiciona a coluna de data e hora
+                const colunaData = novaLinha.insertCell(0);
+                const agora = new Date();
+                colunaData.textContent = agora.toLocaleString();
+
+                // Adiciona a coluna de mensagem
+                const colunaMensagem = novaLinha.insertCell(1);
+                colunaMensagem.textContent = message;
+            }
 
             // Define o comportamento do botão 'Cadastrar Horário' quando clicado
             $('#cadastrarHorarioBtn').click(function() {
@@ -227,8 +260,10 @@
             ws.onmessage = function(event) {
                 try {
                     const message = JSON.parse(event.data);
-
-                    if (message.topic || message.topico) {
+                    
+                    if (message.topic === 'silvanojose.tcc/serialprints') {
+                        atualizarTabelaSerialPrints(message.message);
+                    } else if (message.topic || message.topico) {
                         // Verifica se é um tópico de temperatura e atualiza
                         if (isTemperaturaTopic(message.topic || message.topico)) {
                             atualizarTemperatura(message);

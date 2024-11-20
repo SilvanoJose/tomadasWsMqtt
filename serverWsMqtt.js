@@ -1,10 +1,11 @@
 const WebSocketServer = require('ws').Server;
 const WebSocket = require('ws');
 const mqtt = require('mqtt');
-
 const wss = new WebSocketServer({ port: 8080 });
 console.log("Servidor WebSocket rodando na porta 8080");
-
+const { MongoClient } = require('mongodb'); // Adicionada para utilizar o MongoDB Atlas
+const uri = "mongodb+srv://silvanojb:Ze560003@cluster0.rot0a49.mongodb.net/?retryWrites=true&w=majority"; // Adicionada para definir a URI de conexão ao MongoDB Atlas
+const clientMongo = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); // Criado um novo cliente MongoDB
 const client = mqtt.connect('mqtt://broker.emqx.io');
 
 const topicos = [
@@ -17,7 +18,8 @@ const topicos = [
   'silvanojose.tcc/tomada2',
   'silvanojose.tcc/tomada3',
   'silvanojose.tcc/tomada4',
-  'silvanojose.tcc/schedule'
+  'silvanojose.tcc/schedule',
+  'silvanojose.tcc/serialprints'
 ];
 
 // Ao conectar-se ao broker MQTT, inscreve-se nos tópicos especificados
@@ -41,6 +43,24 @@ const path = require('path');
 
 // Diretório para armazenar os estados
 const diretorioEstados = path.join(__dirname, 'estados');
+
+
+async function salvarNoMongoDB(topic, message) { // Adicionada para salvar as mensagens no MongoDB
+  try {
+    const db = clientMongo.db('silvanojose'); // Seleciona o banco de dados
+    const collection = db.collection('tomadas'); // Seleciona a coleção
+    const document = {
+      topic: topic, // Tópico do MQTT
+      message: message, // Mensagem recebida do MQTT
+      timestamp: new Date() // Timestamp da mensagem
+    };
+    await collection.insertOne(document); // Insere o documento na coleção
+    console.log(`Mensagem do tópico ${topic} salva no MongoDB.`); // Confirmação no console
+  } catch (err) {
+    console.error('Erro ao salvar no MongoDB:', err); // Tratamento de erro
+  }
+}
+
 
 // Função para salvar o estado dos arquivos manipulados
 function salvarEstadoTomada(topico, estado) {
@@ -290,3 +310,38 @@ client.on('error', error => {
 wss.on('error', error => {
   console.error("Erro na conexão WebSocket:", error);
 });
+
+// Evento de mensagem MQTT
+client.on('message', async (topic, message) => {
+  const messageStr = message.toString();
+  console.log(`Mensagem recebida. Tópico: ${topic}, Mensagem: ${messageStr}`);
+
+  try {
+    await salvarNoMongoDB(topic, messageStr);
+  } catch (err) {
+    console.error('Erro ao salvar mensagem no MongoDB:', err);
+  }
+
+  // Salva o estado recebido nos arquivos JSON
+  salvarEstadoTomada(topic, messageStr);
+
+  // Envia a mensagem para todos os clientes WebSocket conectados
+  wsClients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify({ topico: topic, message: messageStr }));
+    }
+  });
+});
+
+
+async function start() { // Adicionada para conectar ao MongoDB ao iniciar o servidor
+  try {
+    await clientMongo.connect(); // Conexão ao MongoDB Atlas
+    console.log('Conectado ao MongoDB Atlas'); // Confirmação no console
+  } catch (err) {
+    console.error('Erro ao conectar ao MongoDB Atlas:', err); // Tratamento de erro
+  }
+}
+start(); // Inicia a conexão ao MongoDB ao iniciar o servidor
+
+
